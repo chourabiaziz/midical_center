@@ -126,24 +126,29 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="/admin" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-              </a>
+			<li class="menu-item {% if app.request.get('_route') == 'admin_dashboard' %}active{% endif %}">
+    <a href="{{ path('admin_dashboard') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Dashboard</div>
+    </a>
+</li>
+<li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Reclamations</span>
             </li>
-             <li class="menu-item ">
-              <a href="" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Gestion ...</div>
-              </a>
-            </li>
-             <li class="menu-item ">
-              <a href="" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Gestion ...</div>
-              </a>
-            </li>
+<li class="menu-item {% if app.request.get('_route') == 'app_admin_reclamation' %}active{% endif %}">
+    <a href="{{ path('app_admin_reclamation') }}" class="menu-link">
+ 		<i class=' menu-icon tf-icons bx bx-message-rounded-error'></i>
+        <div data-i18n="Analytics">List des  Reclamations</div>
+    </a>
+</li>
+
+<li class="menu-item {% if app.request.get('_route') == 'app_admin_category_reclamation' %}active{% endif %}">
+    <a href="{{ path('app_admin_category_reclamation') }}" class="menu-link">
+ 		<i class='menu-icon tf-icons bx bx-category-alt'></i>
+        <div data-i18n="Analytics">List des  Categories</div>
+    </a>
+</li>
+
 
             <!-- Layouts -->
            
