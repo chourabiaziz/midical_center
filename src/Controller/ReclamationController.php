@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/reclamation')]
@@ -104,4 +105,63 @@ final class ReclamationController extends AbstractController
 
         return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
+
+
+
+
+
+
+    //accepter reclamation
+    #[Route('/{id}/accept', name: 'app_reclamation_accept')]
+    public function accept( Reclamation $reclamation, EntityManagerInterface $entityManager): Response
+    {
+      
+
+        $reclamation->setStatut(Status::TERMINE);
+        $entityManager->persist($reclamation);
+            $entityManager->flush();
+            $this->addFlash('success', 'La réclamation a été Accepté avec succès.');
+            return $this->redirectToRoute('app_admin_reclamation_show', ["id"=>$reclamation->getId()], Response::HTTP_SEE_OTHER);
+       
+    }
+
+
+    //refuser reclamation
+    #[Route('/{id}/refuse', name: 'app_reclamation_refuse')]
+    public function refuse(  Reclamation $reclamation, EntityManagerInterface $entityManager): Response
+    {
+       
+        $reclamation->setStatut(Status::REFUSE);
+        $entityManager->persist($reclamation);
+            $entityManager->flush();
+            $this->addFlash('danger', 'La réclamation a été refusée avec succès.');
+            return $this->redirectToRoute('app_admin_reclamation_show', ["id"=>$reclamation->getId()], Response::HTTP_SEE_OTHER);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

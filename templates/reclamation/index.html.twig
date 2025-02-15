@@ -45,11 +45,12 @@
                                     <p class="card-text text-muted">{{ reclamation.description|length > 100 ? reclamation.description|slice(0, 100) ~ '...' : reclamation.description }}</p>
 
                                     <p class="card-text">
-                                        <span class="badge bg-info"><i class="bx bx-category"></i> {{ reclamation.category.nom }}</span>
-                                        <span class="badge {{ reclamation.Statut.label() == 'En attente' ? 'bg-warning text-dark' : (reclamation.Statut.label() == 'Traitée' ? 'bg-success' : 'bg-info') }}">
-                                            <i class="bx {{ reclamation.Statut.label() == 'En attente' ? 'bx-time' : (reclamation.Statut.label() == 'Traitée' ? 'bx-check-circle' : 'bx-info-circle') }}"></i>
-                                            {{ reclamation.Statut.label() }}
-                                        </span>
+                                         <i class="bx bx-category"></i> {{ reclamation.category.nom }} 
+                                  <span class="badge {{ reclamation.Statut.badgeClass() }}">
+    <i class="bx {{ reclamation.Statut.iconClass() }}"></i>
+    {{ reclamation.Statut.label() }}
+</span>
+
                                     </p>
 
                                     <div class="d-flex justify-content-between mb-1 ">

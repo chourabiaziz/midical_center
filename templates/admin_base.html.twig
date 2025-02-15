@@ -1,279 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}Hello AdminController!
 			{% endblock %}
 		</title>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-		<title>Dashboard - Analytics | HealthLink - Bootstrap 5 HTML Admin Template - Pro</title>
+		<link rel="shortcut icon" href="compiled/svg/favicon.svg" type="image/x-icon">
+		<link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAiCAYAAADRcLDBAAAEs2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS41LjAiPgogPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iCiAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyIKICAgIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIKICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIKICAgIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIgogICAgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIKICAgZXhpZjpQaXhlbFhEaW1lbnNpb249IjMzIgogICBleGlmOlBpeGVsWURpbWVuc2lvbj0iMzQiCiAgIGV4aWY6Q29sb3JTcGFjZT0iMSIKICAgdGlmZjpJbWFnZVdpZHRoPSIzMyIKICAgdGlmZjpJbWFnZUxlbmd0aD0iMzQiCiAgIHRpZmY6UmVzb2x1dGlvblVuaXQ9IjIiCiAgIHRpZmY6WFJlc29sdXRpb249Ijk2LjAiCiAgIHRpZmY6WVJlc29sdXRpb249Ijk2LjAiCiAgIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiCiAgIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIKICAgeG1wOk1vZGlmeURhdGU9IjIwMjItMDMtMzFUMTA6NTA6MjMrMDI6MDAiCiAgIHhtcDpNZXRhZGF0YURhdGU9IjIwMjItMDMtMzFUMTA6NTA6MjMrMDI6MDAiPgogICA8eG1wTU06SGlzdG9yeT4KICAgIDxyZGY6U2VxPgogICAgIDxyZGY6bGkKICAgICAgc3RFdnQ6YWN0aW9uPSJwcm9kdWNlZCIKICAgICAgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWZmaW5pdHkgRGVzaWduZXIgMS4xMC4xIgogICAgICBzdEV2dDp3aGVuPSIyMDIyLTAzLTMxVDEwOjUwOjIzKzAyOjAwIi8+CiAgICA8L3JkZjpTZXE+CiAgIDwveG1wTU06SGlzdG9yeT4KICA8L3JkZjpEZXNjcmlwdGlvbj4KIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+Cjw/eHBhY2tldCBlbmQ9InIiPz5V57uAAAABgmlDQ1BzUkdCIElFQzYxOTY2LTIuMQAAKJF1kc8rRFEUxz9maORHo1hYKC9hISNGTWwsRn4VFmOUX5uZZ36oeTOv954kW2WrKLHxa8FfwFZZK0WkZClrYoOe87ypmWTO7dzzud97z+nec8ETzaiaWd4NWtYyIiNhZWZ2TvE946WZSjqoj6mmPjE1HKWkfdxR5sSbgFOr9Ll/rXoxYapQVik8oOqGJTwqPL5i6Q5vCzeo6dii8KlwpyEXFL519LjLLw6nXP5y2IhGBsFTJ6ykijhexGra0ITl5bRqmWU1fx/nJTWJ7PSUxBbxJkwijBBGYYwhBgnRQ7/MIQIE6ZIVJfK7f/MnyUmuKrPOKgZLpEhj0SnqslRPSEyKnpCRYdXp/9++msneoFu9JgwVT7b91ga+LfjetO3PQ9v+PgLvI1xkC/m5A+h7F32zoLXug38dzi4LWnwHzjeg8UGPGbFfySvuSSbh9QRqZ6H+Gqrm3Z7l9zm+h+iafNUV7O5Bu5z3L/wAdthn7QIme0YAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAJTSURBVFiF7Zi9axRBGIefEw2IdxFBRQsLWUTBaywSK4ubdSGVIY1Y6HZql8ZKCGIqwX/AYLmCgVQKfiDn7jZeEQMWfsSAHAiKqPiB5mIgELWYOW5vzc3O7niHhT/YZvY37/swM/vOzJbIqVq9uQ04CYwCI8AhYAlYAB4Dc7HnrOSJWcoJcBS4ARzQ2F4BZ2LPmTeNuykHwEWgkQGAet9QfiMZjUSt3hwD7psGTWgs9pwH1hC1enMYeA7sKwDxBqjGnvNdZzKZjqmCAKh+U1kmEwi3IEBbIsugnY5avTkEtIAtFhBrQCX2nLVehqyRqFoCAAwBh3WGLAhbgCRIYYinwLolwLqKUwwi9pxV4KUlxKKKUwxC6ZElRCPLYAJxGfhSEOCz6m8HEXvOB2CyIMSk6m8HoXQTmMkJcA2YNTHm3congOvATo3tE3A29pxbpnFzQSiQPcB55IFmFNgFfEQeahaAGZMpsIJIAZWAHcDX2HN+2cT6r39GxmvC9aPNwH5gO1BOPFuBVWAZue0vA9+A12EgjPadnhCuH1WAE8ivYAQ4ohKaagV4gvxi5oG7YSA2vApsCOH60WngKrA3R9IsvQUuhIGY00K4flQG7gHH/mLytB4C42EgfrQb0mV7us8AAMeBS8mGNMR4nwHamtBB7B4QRNdaS0M8GxDEog7iyoAguvJ0QYSBuAOcAt71Kfl7wA8DcTvZ2KtOlJEr+ByyQtqqhTyHTIeB+ONeqi3brh+VgIN0fohUgWGggizZFTplu12yW8iy/YLOGWMpDMTPXnl+Az9vj2HERYqPAAAAAElFTkSuQmCC" type="image/png">
 
-		<meta
-		name="description" content=""/>
+ <link rel="stylesheet" href="{{ asset('vendor/fonts/boxicons.css') }}"/>
 
-		<!-- Favicon -->
-		<link
-		rel="icon" type="image/x-icon" href="{{ asset('assets_backoffice/img/favicon/favicon.ico') }}"/>
-
-		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com"/>
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-		<link
-		href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
-
-		<!-- Icons. Uncomment required icon fonts -->
-		<link
-		rel="stylesheet" href="{{ asset('assets_backoffice/vendor/fonts/boxicons.css') }}"/>
-
-		<!-- Core CSS -->
-		<link rel="stylesheet" href="{{ asset('assets_backoffice/vendor/css/core.css') }}" class="template-customizer-core-css"/>
-		<link rel="stylesheet" href="{{ asset('assets_backoffice/vendor/css/theme-default.css') }}" class="template-customizer-theme-css"/>
-		<link
-		rel="stylesheet" href="{{ asset('assets_backoffice/css/demo.css') }}"/>
-
-		<!-- Vendors CSS -->
-		<link rel="stylesheet" href="{{ asset('assets_backoffice/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}"/>
-		<link rel="stylesheet" href="{{ asset('assets_backoffice/vendor/libs/apex-charts/apex-charts.css') }}"/>
-
-		<!-- Page CSS -->
-
-		<!-- Helpers --><script src="{{ asset('assets_backoffice/vendor/js/helpers.js') }}"> </script>
-
-		<!-- Template customizer & Theme config files -->
-		<script src="{{ asset('assets_backoffice/js/config.js') }}"></script>
-
-		<!-- Custom CSS for back-office -->
-		<link rel="stylesheet" href="{{ asset('assets_backoffice_backoffice/css/your-style-file.css') }}"/>
-
-
+		<link rel="stylesheet" href="{{asset('compiled/css/app.css')}}">
+		<link rel="stylesheet" href="{{asset('compiled/css/app-dark.css')}}">
+		<link rel="stylesheet" href="{{asset('compiled/css/iconly.css')}}">
 	</head>
+
 	<body>
+		<div id="app">
+			<div id="sidebar">
+				<div class="sidebar-wrapper active">
+					<div class="sidebar-header position-relative">
+						<div class="d-flex justify-content-between gap-2 align-items-center">
 
-		<div class="layout-wrapper layout-content-navbar">
-			<div
-				class="layout-container">
-				<!-- Menu -->
-
-			     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
-              <span class="app-brand-logo demo">
-                <svg
-                  width="25"
-                  viewBox="0 0 25 42"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                >
-                  <defs>
-                    <path
-                      d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
-                      id="path-1"
-                    ></path>
-                    <path
-                      d="M5.47320593,6.00457225 C4.05321814,8.216144 4.36334763,10.0722806 6.40359441,11.5729822 C8.61520715,12.571656 10.0999176,13.2171421 10.8577257,13.5094407 L15.5088241,14.433041 L18.6192054,7.984237 C15.5364148,3.11535317 13.9273018,0.573395879 13.7918663,0.358365126 C13.5790555,0.511491653 10.8061687,2.3935607 5.47320593,6.00457225 Z"
-                      id="path-3"
-                    ></path>
-                    <path
-                      d="M7.50063644,21.2294429 L12.3234468,23.3159332 C14.1688022,24.7579751 14.397098,26.4880487 13.008334,28.506154 C11.6195701,30.5242593 10.3099883,31.790241 9.07958868,32.3040991 C5.78142938,33.4346997 4.13234973,34 4.13234973,34 C4.13234973,34 2.75489982,33.0538207 2.37032616e-14,31.1614621 C-0.55822714,27.8186216 -0.55822714,26.0572515 -4.05231404e-15,25.8773518 C0.83734071,25.6075023 2.77988457,22.8248993 3.3049379,22.52991 C3.65497346,22.3332504 5.05353963,21.8997614 7.50063644,21.2294429 Z"
-                      id="path-4"
-                    ></path>
-                    <path
-                      d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
-                      id="path-5"
-                    ></path>
-                  </defs>
-                  <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
-                      <g id="Icon" transform="translate(27.000000, 15.000000)">
-                        <g id="Mask" transform="translate(0.000000, 8.000000)">
-                          <mask id="mask-2" fill="white">
-                            <use xlink:href="#path-1"></use>
-                          </mask>
-                          <use fill="#696cff" xlink:href="#path-1"></use>
-                          <g id="Path-3" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-3"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
-                          </g>
-                          <g id="Path-4" mask="url(#mask-2)">
-                            <use fill="#696cff" xlink:href="#path-4"></use>
-                            <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
-                          </g>
-                        </g>
-                        <g
-                          id="Triangle"
-                          transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) "
-                        >
-                          <use fill="#696cff" xlink:href="#path-5"></use>
-                          <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
-                        </g>
-                      </g>
-                    </g>
-                  </g>
-                </svg>
-              </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">HealthLink</span>
-            </a>
-
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm align-middle"></i>
-            </a>
-          </div>
-
-          <div class="menu-inner-shadow"></div>
-
-          <ul class="menu-inner py-1">
-            <!-- Dashboard -->
-			<li class="menu-item {% if app.request.get('_route') == 'admin_dashboard' %}active{% endif %}">
-    <a href="{{ path('admin_dashboard') }}" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-        <div data-i18n="Analytics">Dashboard</div>
-    </a>
-</li>
-<li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Reclamations</span>
-            </li>
-<li class="menu-item {% if app.request.get('_route') == 'app_admin_reclamation' %}active{% endif %}">
-    <a href="{{ path('app_admin_reclamation') }}" class="menu-link">
- 		<i class=' menu-icon tf-icons bx bx-message-rounded-error'></i>
-        <div data-i18n="Analytics">List des  Reclamations</div>
-    </a>
-</li>
-
-<li class="menu-item {% if app.request.get('_route') == 'app_admin_category_reclamation' %}active{% endif %}">
-    <a href="{{ path('app_admin_category_reclamation') }}" class="menu-link">
- 		<i class='menu-icon tf-icons bx bx-category-alt'></i>
-        <div data-i18n="Analytics">List des  Categories</div>
-    </a>
-</li>
-
-
-            <!-- Layouts -->
-           
-            
-   
-          </ul>
-        </aside>
-				<div
-					class="layout-page">
-					<!-- Navbar -->
-
-					<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
-						<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-							<a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-								<i class="bx bx-menu bx-sm"></i>
-							</a>
-						</div>
-
-						<div
-							class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-							<!-- Search -->
-							<div class="navbar-nav align-items-center">
-								<div class="nav-item d-flex align-items-center">
-									<i class="bx bx-search fs-4 lh-0"></i>
-									<input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."/>
-								</div>
+							<div class="theme-toggle d-flex  align-items-center mt-2">
+								<h1 style="font-size: 1.75rem; margin-right: 50px;">HealthLink</h1>
 							</div>
-							<!-- /Search -->
 
-							<ul
-								class="navbar-nav flex-row align-items-center ms-auto">
-								<!-- Place this tag where you want the button to render. -->
-							 
+							<div class="theme-toggle d-flex gap-2  align-items-center mt-2">
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20" height="20" preserveaspectratio="xMidYMid meet" viewbox="0 0 21 21">
+									<g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2" opacity=".3"></path>
+										<g transform="translate(-210 -1)">
+											<path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
+											<circle cx="220.5" cy="11.5" r="4"></circle>
+											<path d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2"></path>
+										</g>
+									</g>
+								</svg>
+								<div class="form-check form-switch fs-6">
+									<input class="form-check-input  me-0" type="checkbox" id="toggle-dark" style="cursor: pointer">
+									<label class="form-check-label"></label>
+								</div>
+								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" width="20" height="20" preserveaspectratio="xMidYMid meet" viewbox="0 0 24 24">
+									<path fill="currentColor" d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3l3.19.09m3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95l2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31Z"></path>
+								</svg>
+							</div>
 
-								<!-- User -->
-								<li class="nav-item navbar-dropdown dropdown-user dropdown">
-									<a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-										<div class="avatar avatar-online">
-											<img src="{{asset('assets_backoffice/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle"/>
-										</div>
-									</a>
-									<ul class="dropdown-menu dropdown-menu-end">
-										<li>
-											<a class="dropdown-item" href="#">
-												<div class="d-flex">
-													<div class="flex-shrink-0 me-3">
-														<div class="avatar avatar-online">
-															<img src="{{asset('assets_backoffice/img/avatars/1.png')}}" alt class="w-px-40 h-auto rounded-circle"/>
-														</div>
-													</div>
-													<div class="flex-grow-1">
-														<span class="fw-semibold d-block">John Doe</span>
-														<small class="text-muted">Admin</small>
-													</div>
-												</div>
-											</a>
-										</li>
-										<li>
-											<div class="dropdown-divider"></div>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#">
-												<i class="bx bx-user me-2"></i>
-												<span class="align-middle">My Profile</span>
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#">
-												<i class="bx bx-cog me-2"></i>
-												<span class="align-middle">Settings</span>
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#">
-												<span class="d-flex align-items-center align-middle">
-													<i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-													<span class="flex-grow-1 align-middle">Billing</span>
-													<span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-												</span>
-											</a>
-										</li>
-										<li>
-											<div class="dropdown-divider"></div>
-										</li>
-										<li>
-											<a class="dropdown-item" href="auth-login-basic.html">
-												<i class="bx bx-power-off me-2"></i>
-												<span class="align-middle">Log Out</span>
-											</a>
-										</li>
-									</ul>
-								</li>
-								<!--/ User -->
-							</ul>
-						</div>
-					</nav>
-
-					<!-- / Navbar -->
-
-					<!-- Content wrapper -->
-					<div class="content-wrapper">
-						<div class="container-xxl flex-grow-1 container-p-y"> 
-                        {% block body %}{% endblock %}
+							<div class="sidebar-toggler  x">
+								<a href="#" class="sidebar-hide d-xl-none d-block">
+									<i class="bi bi-x bi-middle"></i>
+								</a>
 							</div>
 						</div>
 					</div>
+					<div class="sidebar-menu">
+						<ul class="menu">
+							<li class="sidebar-title">Menu</li>
 
-					<!-- Overlay -->
+							<li class="sidebar-item   ">
+								<a href="index.html" class='sidebar-link'>
+									<i class="bi bi-grid-fill"></i>
+									<span>Gestion des RDv</span>
+								</a>
+
+
+							</li>
+							<li class="sidebar-title">Gestions de réclamations</li>
+
+<li class="sidebar-item {% if app.request.attributes.get('_route') == 'app_admin_reclamation' %}active{% endif %}">
+    <a href="{{ path('app_admin_reclamation') }}" class="sidebar-link">
+        <i class="bi bi-grid-fill"></i>
+        <span>Réclamations</span>
+    </a>
+</li>
+
+<li class="sidebar-item {% if app.request.attributes.get('_route') == 'app_category_index' %}active{% endif %}">
+    <a href="{{ path('app_category_index') }}" class="sidebar-link">
+        <i class="bi bi-grid-fill"></i>
+        <span>Catégories des réclamations</span>
+    </a>
+</li>
+
+							<li class="sidebar-item  has-sub">
+								<a href="#" class='sidebar-link'>
+									<i class="bi bi-stack"></i>
+									<span>Gestion user</span>
+								</a>
+
+								<ul class="submenu ">
+
+									<li class="submenu-item  ">
+										<a href="component-toasts.html" class="submenu-link">Patients</a>
+
+									</li>
+
+									<li class="submenu-item  ">
+										<a href="component-tooltip.html" class="submenu-link">Doctor</a>
+
+									</li>
+									<li class="submenu-item  ">
+										<a href="component-tooltip.html" class="submenu-link">Soignant</a>
+
+									</li>
+
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</div>
-                 <script src="{{ asset('assets_backoffice/vendor/libs/jquery/jquery.js') }}"></script>
-        <script src="{{ asset('assets_backoffice/vendor/libs/popper/popper.js') }}"></script>
-        <script src="{{ asset('assets_backoffice/vendor/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('assets_backoffice/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-        <script src="{{ asset('assets_backoffice/vendor/js/menu.js') }}"></script>
+			</div>
+			<div id="main">
+				<header class="mb-3">
+					<a href="#" class="burger-btn d-block d-xl-none">
+						<i class="bi bi-justify fs-3"></i>
+					</a>
+				</header>
 
-        <!-- Vendors JS -->
-        <script src="{{ asset('assets_backoffice/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+				{% block body %}
+			
 
-        <!-- Main JS -->
-        <script src="{{ asset('assets_backoffice/js/main.js') }}"></script>
-
-        <!-- Page JS -->
-        <script src="{{ asset('assets_backoffice/js/dashboards-analytics.js') }}"></script>
-
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
- 		</body>
-	</html>
+				{% endblock %}
+				<footer>
+					<div class="footer clearfix mb-0 text-muted">
+						<div class="float-start">
+							<p>2023 &copy; Mazer</p>
+						</div>
+						<div class="float-end">
+							<p>Crafted with
+								<span class="text-danger">
+									<i class="bi bi-heart-fill icon-mid"></i>
+								</span>
+								by
+								<a href="https://saugi.me">Saugi</a>
+							</p>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</body>
+	</body>
+</html>

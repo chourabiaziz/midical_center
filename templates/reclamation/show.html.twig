@@ -29,10 +29,11 @@
                     
                     <p class="card-text">
                         <strong>Statut :</strong> 
-                      <span class="badge {{ reclamation.Statut.label() == 'En attente' ? 'bg-warning text-dark' : (reclamation.Statut.label() == 'Traitée' ? 'bg-success' : 'bg-info') }}">
-                                            <i class="bx {{ reclamation.Statut.label() == 'En attente' ? 'bx-time' : (reclamation.Statut.label() == 'Traitée' ? 'bx-check-circle' : 'bx-info-circle') }}"></i>
-                                            {{ reclamation.Statut.label() }}
-                                        </span>
+                 <span class="badge {{ reclamation.Statut.badgeClass() }}">
+    <i class="bx {{ reclamation.Statut.iconClass() }}"></i>
+    {{ reclamation.Statut.label() }}
+</span>
+
                     </p>
 
                     <p class="card-text"><small class="text-muted">Ajouté récemment</small></p>

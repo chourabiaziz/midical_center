@@ -23,10 +23,10 @@
                 <td>{{ reclamation.titre }}</td>
                 <td>{{ reclamation.description }}</td>
                 <td>{{ reclamation.category.nom }}</td>
-                <td>  <span class="badge {{ reclamation.Statut.label() == 'En attente' ? 'bg-warning text-dark' : (reclamation.Statut.label() == 'Traitée' ? 'bg-success' : 'bg-info') }}">
-                                            <i class="bx {{ reclamation.Statut.label() == 'En attente' ? 'bx-time' : (reclamation.Statut.label() == 'Traitée' ? 'bx-check-circle' : 'bx-info-circle') }}"></i>
-                                            {{ reclamation.Statut.label() }}
-                                        </span></td>
+                <td>    <span class="badge {{ reclamation.Statut.badgeClass() }}">
+    <i class="bx {{ reclamation.Statut.iconClass() }}"></i>
+    {{ reclamation.Statut.label() }}
+</td>
                 <td>
                     {% if reclamation.image %}
                         <img src="{{ asset('reclamations/' ~ reclamation.image) }}" alt="Image" width="80">

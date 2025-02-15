@@ -3,6 +3,26 @@
 {% block title %}Détails de la Réclamation{% endblock %}
 
 {% block body %}
+{% for type, messages in app.session.flashBag.all %}
+    {% for message in messages %}
+        <div class="alert alert-{{ type }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            let alerts = document.querySelectorAll(".alert");
+            alerts.forEach(alert => {
+                alert.style.transition = "opacity 0.5s";
+                alert.style.opacity = "0";
+                setTimeout(() => alert.remove(), 500);
+            });
+        }, 3000);
+    });
+</script>
+
 <div class="container mt-4">
     <h2 class="mb-4 text-center">Détails de la Réclamation</h2>
 
@@ -29,16 +49,20 @@
                     
                     <p class="card-text">
                         <strong>Statut :</strong> 
-                      <span class="badge {{ reclamation.Statut.label() == 'En attente' ? 'bg-warning text-dark' : (reclamation.Statut.label() == 'Traitée' ? 'bg-success' : 'bg-info') }}">
-                                            <i class="bx {{ reclamation.Statut.label() == 'En attente' ? 'bx-time' : (reclamation.Statut.label() == 'Traitée' ? 'bx-check-circle' : 'bx-info-circle') }}"></i>
-                                            {{ reclamation.Statut.label() }}
-                                        </span>
+                    <span class="badge {{ reclamation.Statut.badgeClass() }}">
+    <i class="bx {{ reclamation.Statut.iconClass() }}"></i>
+    {{ reclamation.Statut.label() }}
+</span>
+
                     </p>
 
                     <p class="card-text"><small class="text-muted">Ajouté récemment</small></p>
 
-                    <!-- Boutons d'action -->
-                    <div class="mt-3">
+  <div class="mt-3">
+                        <a class="btn btn-success" href="/reclamation/{{reclamation.id}}/accept">Accepté</a>
+                        <a class="btn btn-danger" href="/reclamation/{{reclamation.id}}/refuse">Refusé</a>
+
+                     </div>                    <div class="mt-3">
                      
                         
                          {{ include('reclamation/_delete_form.html.twig') }}

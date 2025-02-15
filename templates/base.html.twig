@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('img/logo siteweb.png') }}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -24,8 +24,9 @@
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slicknav.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-<!-- Boxicons CSS -->
-<link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+     <link rel="stylesheet" href="{{ asset('vendor/fonts/boxicons.css') }}"/>
+
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
     </head>
     <body>
@@ -39,7 +40,7 @@
                         <div class="col-xl-3 col-lg-3">
                             <div class="logo-img">
                                 <a href="index.html">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="img/logo siteweb.png" alt="" width="130" height="110" style="margin-left: -100px;">
                                 </a>
                             </div>
                         </div>
@@ -63,7 +64,7 @@
                                                         <li><a href="elements.html">elements</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="/reclamation">Reclamation</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
                                             </ul>
                                         </nav>
                                     </div>
@@ -83,9 +84,9 @@
             </div>
         </div>
     </header>
-   <div style="margin-top: 150px;margin-bottom:150px" class="container" >
+   <div style="margin-top: 150px;">
         {% block body %}{% endblock %}
-</div>
+    </div>
           <footer class="footer">
         <div class="footer_top">
             <div class="container">
